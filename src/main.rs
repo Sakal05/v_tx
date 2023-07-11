@@ -23,14 +23,14 @@ async fn main() -> anyhow::Result<()> {
     }
 
     let network = &args[1];
-    let raw_tx = &args[2];
+    let tx_hash = &args[2];
 
-    let hash = send_raw_tx::send_raw_tx(network.to_owned(), raw_tx.to_owned()).await;
+    // let hash = send_raw_tx::send_raw_tx(network.to_owned(), raw_tx.to_owned()).await;
     /* Get Transaction Receipt */
-    let h = match hash {
-        Ok(h) => h,
-        Err(e) => "0x".to_owned(),
-    };
+    // let h = match hash {
+    //     Ok(h) => h,
+    //     Err(e) => "0x".to_owned(),
+    // };
 
     thread::sleep(time::Duration::from_secs(3));
     // println!("Receipt address: {}", &h);
@@ -52,8 +52,8 @@ async fn main() -> anyhow::Result<()> {
 
     let rpc = Web3::new(public_node_url.to_string());
 
-    if h != "0x" {
-        let r = rpc.eth_get_transaction_receipt(h.as_str()).await?;
+    if tx_hash != "0x" {
+        let r = rpc.eth_get_transaction_receipt(tx_hash.as_str()).await?;
         thread::sleep(time::Duration::from_secs(3));
         let mut to_address: String = "0x".to_owned();
         let mut from_address: String = "0x".to_owned();
@@ -137,7 +137,7 @@ async fn main() -> anyhow::Result<()> {
             println!("\nSaved draft with id {}", tx.id);
             println!("Failed, confirmed block must greater than 2");
         }
-    } else if h == "0x" {
+    } else if tx_hash == "0x" {
         println!("Hash not found");
     }
 
