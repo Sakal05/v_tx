@@ -1,0 +1,25 @@
+[package]
+name = "v_tx"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+web3-rpc = "0.1.10"
+serde_json = "1.0.96"
+tokio = "1.28.2"
+reqwest = { version = "0.11", features = ["json"] }
+hex = "0.4.3"
+anyhow = "1.0.71"
+serde = "1.0.164"
+serde_derive = "1.0.164"
+num-bigint = "0.4.3"
+num-traits = "0.2"
+web3-unit-converter = "0.1.1"
+ethereum-types = "0.14.1"
+tiny-keccak = "2.0"
+blake2 = "0.10.6"
+sha3 = "0.10.8"
+diesel = { version = "2.1.0", features = ["mysql"] }
+dotenvy = "0.15"
